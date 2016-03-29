@@ -18,7 +18,7 @@
  * Annotate block definition
  *
  * @package block_annotate
- * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @copyright Fokion Sotiropoulos
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -85,7 +85,7 @@ class block_annotate extends block_base {
                 $this->content->text .= get_string ( "config_group_access", "block_annotate" );
                 $this->content->text .= "<p>" . get_string ( "access_shareuser_msg", "block_annotate" );
                 if ($this->config->shareuser != '') {
-                    $shareuser = process_usr_input ( $this->config->shareuser );
+                    $shareuser = block_annotate_process_usr_input ( $this->config->shareuser );
                     $this->content->text .= '<input type="hidden" name="annotate_shareuser" id="annotate_shareuser" value="' . $shareuser . '"/>';
                     $this->content->text .= htmlspecialchars ( $this->config->shareuser, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8' );
                 } else {

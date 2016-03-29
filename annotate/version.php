@@ -18,7 +18,7 @@
  * Annotate block version details
  *
  * @package block_annotate
- * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @copyright Fokion Sotiropoulos
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
