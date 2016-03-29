@@ -19,20 +19,20 @@
  * Annotate block helper functions
  *
  * @package block_annotate
- * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @copyright Fokion Sotiropoulos
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once("lib/Crypt/HMAC2.php");
 
 // Process user input (JSON-encode + HTML-escape).
-function process_usr_input($inputdata) {
+function block_annotate_process_usr_input($inputdata) {
     $dataencoded = json_encode ( $inputdata );
     return htmlspecialchars ( $dataencoded, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8' );
 }
 
 // Convert a string to base64.
-function hex2b64($str) {
+function block_annotate_hex2b64($str) {
     $raw = '';
     for ($i = 0; $i < strlen ( $str ); $i += 2) {
         $raw .= chr ( hexdec ( substr ( $str, $i, 2 ) ) );
@@ -40,19 +40,19 @@ function hex2b64($str) {
     return base64_encode ( $raw );
 }
 
-function sign_request($phpfn, $apiuser, $apikey, $annotateuser, $validfor = 0) {
+function block_annotate_sign_request($phpfn, $apiuser, $apikey, $annotateuser, $validfor = 0) {
     // Include the timestamp.
     $requesttime = time () + $validfor;
     $stringtosign = "$phpfn\n$apiuser\n$requesttime\n$annotateuser";
     $t = new Crypt_HMAC2 ( $apikey, "sha1" );
     $hasher = & $t;
-    $signature = hex2b64 ( $hasher->hash ( $stringtosign ) );
+    $signature = block_annotate_hex2b64 ( $hasher->hash ( $stringtosign ) );
     $request = "api-user=" . rawurlencode ( $apiuser ) . "&api-requesttime=" . $requesttime;
     $request .= "&api-annotateuser=" . rawurlencode ( $annotateuser ) . "&api-auth=" . rawurlencode ( $signature );
     return $request;
 }
 
-function make_login_link($user, $loc, $errloc, $sig) {
+function block_annotate_make_login_link($user, $loc, $errloc, $sig) {
     global $CFG;
 
     // The api function we will call first.
@@ -65,7 +65,7 @@ function make_login_link($user, $loc, $errloc, $sig) {
     $validfor = 60 * 30;
 
     // Add code for signing the request so the a.nnotate server trusts us.
-    $request = sign_request ( $phpfn, $CFG->block_annotate_api_user, $CFG->block_annotate_api_key, $user, $validfor );
+    $request = block_annotate_sign_request ( $phpfn, $CFG->block_annotate_api_user, $CFG->block_annotate_api_key, $user, $validfor );
 
     // The url we will call is the api php with the signing code in the get arguments.
     $url = $CFG->block_annotate_server_url . "/php/$phpfn?$request";
@@ -90,7 +90,7 @@ function make_login_link($user, $loc, $errloc, $sig) {
     return $url;
 }
 
-function redirect_to_annotate($docpath, $pnhash = "", $owner = "", $coursename = "", $courseid = "") {
+function block_annotate_redirect_to_annotate($docpath, $pnhash = "", $owner = "", $coursename = "", $courseid = "") {
     global $CFG, $USER;
 
     $fname = basename ( $docpath );
@@ -123,7 +123,7 @@ function redirect_to_annotate($docpath, $pnhash = "", $owner = "", $coursename =
     if (strlen ( trim ( $CFG->block_annotate_api_user ) ) > 10) {
         // We have a doc owner and API key, so we can auto-create accounts and auto-login.
         $errurl = $CFG->wwwroot . '/blocks/annotate/error.php';
-        $loginurl = make_login_link ( $USER->email, $uploadurl, $errurl, $USER->username );
+        $loginurl = block_annotate_make_login_link ( $USER->email, $uploadurl, $errurl, $USER->username );
         header ( "Location:" . $loginurl );
     } else {
         // No master user configured. Just ask the user to create an account or log in.

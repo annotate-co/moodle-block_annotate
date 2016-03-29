@@ -18,7 +18,7 @@
  * Annotate block view.php - redirects to Annotate
  *
  * @package block_annotate
- * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @copyright Fokion Sotiropoulos
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -64,4 +64,4 @@ $docpath = '/' . $context->id . '/mod_resource/content/' . $resource->revision .
 
 $coursename = $course->fullname;
 $courseid = $course->id;
-redirect_to_annotate($docpath, $pathnamehash, $owner, $coursename, $courseid);
+block_annotate_redirect_to_annotate($docpath, $pathnamehash, $owner, $coursename, $courseid);
