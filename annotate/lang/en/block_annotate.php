@@ -13,6 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Annotate block English language
+ *
+ * @package block_annotate
+ * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 $string ['block_annotate_version_number'] = '1.4';
 $string ["block_annotate_version_date"] = '25-October-2015';
 $string ['pluginname'] = 'Annotate connector';
@@ -33,16 +41,28 @@ $string ['annotate_api_key_lbl'] = 'API key for the user';
 $string ['annotate_api_key_msg'] = 'The API key can be found at the bottom of the account page when logged in to Annotate server administration page ';
 $string ['annotate_api_key_default'] = '';
 
+$string ['annotate_wsuser_token_lbl'] = 'Web Services user token';
+$string ['annotate_wsuser_token_msg'] = 'A specific Moodle Web Services user must be created to allow Annotate to fetch files from Moodle.';
+$string ['annotate_wsuser_token_default'] = '';
+
 $string ['annotate_moodleId_lbl'] = 'Moodle Installation Identifier';
 $string ['annotate_moodleId_msg'] = 'In order to separate the workspaces based on the location of the moodle.';
 
-$string ['annotate_edit_form_header'] = 'Document sharing options';
-$string ['annotate_edit_form_access'] = 'Access';
-$string ['annotate_edit_form_access_individual_option'] = 'Individual';
-$string ['annotate_edit_form_access_group_option'] = 'Group';
-$string ['annotate_edit_form_access_group'] = "Document access options";
-$string ['annotate_edit_form_access_group_help'] = 'With "Individual" access each user will get an independent instance of each resource they access and notes will be private unless they explicitly share the document in Annotate. With "Group" access there is one copy for the group which is owned by the specified Course Instructor. Students can still make private notes but they can also make Shared notes visible to other users.';
+$string ['config_header_label'] = 'Document sharing options';
+$string ['config_individual_access'] = 'Individual';
+$string ['config_group_access'] = 'Group';
+$string ['config_access_label'] = 'Access';
+$string ['config_access_label_help'] = 'With "Individual" access each user will get an independent instance of each resource they access and notes will be private unless they explicitly share the document in Annotate. With "Group" access there is one copy for the group which is owned by the specified user below. Students can still make private notes but they can also make Shared notes visible to other users.';
+$string ['config_shareuser_label'] = 'Document owner (Group only)';
+$string ['config_shareuser_label_help'] = 'For "Group" access, the email of the user who will own the document in Annotate must be provided. This is often set to the course instructor.';
 
-$string ['annotate_edit_form_access_master'] = 'Document ownership on Annotate';
-$string ['annotate_edit_form_access_master_help'] = 'For "Group" access, the course instructor must fill the email address that is using for Annotate.';
+$string ['access_set_to_msg'] = 'Document access in Annotate set to: ';
+$string ['access_default_msg'] = 'Individual (Default). This can be changed in config.';
+$string ['access_shareuser_msg'] = 'Document owner: ';
+$string ['access_shareuser_msg_dft'] = 'Not set yet. Use config.';
 
+$string ['invalid_email_msg'] = 'Invalid email';
+$string ['enter_email_msg'] = 'Enter email';
+
+$string ['transfer_error'] = 'Error';
+$string ['transfer_error_msg'] = 'There was a problem transferring to Annotate to view the document. Please contact your server administrator.';

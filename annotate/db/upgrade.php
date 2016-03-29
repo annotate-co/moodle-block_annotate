@@ -8,22 +8,26 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+/**
+ *
+ * @package block_annotate
+ * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 /**
- * This file defines the admin settings for this plugin
- * @package   block_annotate
- * @author Fokion Sotiropoulos (fokion@textensor.com)
- * @see  http://docs.moodle.org/dev/Releases
+ * Upgrade the annotate block.
+ *
+ * @param int $oldversion
+ *            the version we are upgrading from
+ * @return bool result
  */
-defined('MOODLE_INTERNAL') || die();
-//TODO We can specify dependencies here as an array.
-$plugin->version=2014051200;
-$plugin->requires = 2014051200;
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release = '2.0';
-$plugin->component = 'block_annotate';
+function xmldb_block_annotate_upgrade($oldversion) {
+    // We do not keep anything in the db so we just upgrade the plugin.
+    return true;
+}

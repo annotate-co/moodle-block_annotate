@@ -8,21 +8,22 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-$capabilities = array(
-		'block/annotate:addinstance' => array(
-				'riskbitmask' => RISK_SPAM | RISK_XSS,
-				'captype' => 'write',
-				'contextlevel' => CONTEXT_BLOCK,
-				'archetypes' => array(
-						'editingteacher' => CAP_ALLOW,
-						'manager' => CAP_ALLOW
-				),
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
-				'clonepermissionsfrom' => 'moodle/site:manageblocks'
-		),
-);
+/**
+ * Annotate block version details
+ *
+ * @package block_annotate
+ * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+$plugin->version = 2016032800;
+$plugin->requires = 2014051200;
+$plugin->maturity = MATURITY_STABLE;
+$plugin->release = '2.0';
+$plugin->component = 'block_annotate';
