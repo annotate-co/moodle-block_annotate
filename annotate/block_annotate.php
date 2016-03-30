@@ -108,8 +108,10 @@ class block_annotate extends block_base {
                 'pdf-doc-xls-ppt-jpg',
                 $CFG->wwwroot
         );
-        $this->page->requires->js_init_call ( 'M.block_annotate.init', $arguments, false, $jsmodule );
 
+        if ( has_capability( 'block/annotate:accessannotate', $this->context ) ) {
+            $this->page->requires->js_init_call ( 'M.block_annotate.init', $arguments, false, $jsmodule );
+        }
         return $this->content;
     }
 }

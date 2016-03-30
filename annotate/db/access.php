@@ -21,15 +21,29 @@
  * @copyright Fokion Sotiropoulos
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 $capabilities = array (
-        'block/annotate:addinstance' => array (
-                'riskbitmask' => RISK_SPAM | RISK_XSS,
-                'captype' => 'write',
-                'contextlevel' => CONTEXT_BLOCK,
-                'archetypes' => array (
-                        'editingteacher' => CAP_ALLOW,
-                        'manager' => CAP_ALLOW
-                ),
-                'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    'block/annotate:addinstance' => array (
+        'riskbitmask'  => RISK_SPAM | RISK_XSS,
+        'captype'      => 'write',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes'   => array (
+            'editingteacher' => CAP_ALLOW,
+            'manager'        => CAP_ALLOW,
+            'coursecreator'  => CAP_ALLOW
+        ),
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    ),
+
+    'block/annotate:accessannotate' => array (
+        'captype'      => 'read',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes'   => array (
+            'teacher'        => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'manager'        => CAP_ALLOW,
+            'coursecreator'  => CAP_ALLOW,
+            'student'        => CAP_ALLOW
         )
+    )
 );

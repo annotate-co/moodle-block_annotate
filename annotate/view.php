@@ -28,7 +28,7 @@ require_once($CFG->dirroot . '/course/lib.php');
 require_once($CFG->dirroot . '/course/format/lib.php');
 require_once('lib.php');
 
-$id = optional_param('id', 0, PARAM_INT); // Resource ID.
+$id    = optional_param('id', 0, PARAM_INT); // Resource ID.
 $owner = optional_param('owner', "", PARAM_TEXT); // If set, the doc should be owned by this person and just shared by the actual user.
 
 if (!$cm = get_coursemodule_from_id('resource', $id)) {
@@ -40,6 +40,7 @@ $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST)
 
 require_course_login($course, true, $cm);
 $context = context_module::instance($cm->id);
+require_capability('block/annotate:accessannotate', $context);
 
 if ($resource->tobemigrated) {
     resource_print_tobemigrated($resource, $cm, $course);
