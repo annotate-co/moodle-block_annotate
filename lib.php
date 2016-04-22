@@ -17,20 +17,24 @@
 /**
  * Annotate block helper functions
  *
- * @package block_annotate
- * @copyright Fokion Sotiropoulos
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   block_annotate
+ * @copyright Textensor Ltd.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once("lib/Crypt/HMAC2.php");
 
-// Process user input (JSON-encode + HTML-escape).
+/**
+ * Process user input (JSON-encode + HTML-escape).
+ */
 function block_annotate_process_usr_input($inputdata) {
     $dataencoded = json_encode ( $inputdata );
     return htmlspecialchars ( $dataencoded, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, 'UTF-8' );
 }
 
-// Convert a string to base64.
+/**
+ * Convert a string to base64.
+ */
 function block_annotate_hex2b64($str) {
     $raw = '';
     for ($i = 0; $i < strlen ( $str ); $i += 2) {
@@ -39,6 +43,9 @@ function block_annotate_hex2b64($str) {
     return base64_encode ( $raw );
 }
 
+/**
+ * Signs the Annotate request.
+ */
 function block_annotate_sign_request($phpfn, $apiuser, $apikey, $annotateuser, $validfor = 0) {
     // Include the timestamp.
     $requesttime = time () + $validfor;
@@ -51,6 +58,9 @@ function block_annotate_sign_request($phpfn, $apiuser, $apikey, $annotateuser, $
     return $request;
 }
 
+/**
+ * Annotate login request, creates account if necessary.
+ */
 function block_annotate_make_login_link($user, $loc, $errloc, $sig) {
     global $CFG;
 
@@ -89,6 +99,9 @@ function block_annotate_make_login_link($user, $loc, $errloc, $sig) {
     return $url;
 }
 
+/**
+ * Redirects to Annotate.
+ */
 function block_annotate_redirect_to_annotate($docpath, $pnhash = "", $owner = "", $coursename = "", $courseid = "") {
     global $CFG, $USER;
 
