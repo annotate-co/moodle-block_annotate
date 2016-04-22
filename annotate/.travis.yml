@@ -18,6 +18,7 @@ env:
  matrix:
   - DB=pgsql
   - DB=mysqli
+  - IGNORE_PATHS=lib,lib/Crypt
 
 before_install:
   - phpenv config-rm xdebug.ini
