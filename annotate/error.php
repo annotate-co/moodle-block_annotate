@@ -31,6 +31,6 @@ require_once(dirname ( __FILE__ ) . '/../../config.php');
 <body style="padding: 60px">
     <h2><?php print get_string("transfer_error", "block_annotate"); ?></h2>
     <p><?php print get_string("transfer_error_msg", "block_annotate"); ?></p>
-    <p><i><?php print $_GET['msg']; ?></i></p>
+    <p><i><?php print optional_param('msg', "", PARAM_TEXT);; ?></i></p>
 </body>
 </html>
