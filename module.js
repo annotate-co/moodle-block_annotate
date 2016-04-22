@@ -7,7 +7,64 @@ M.block_annotate.init = function(Y, tgts, rt) {
     var targets = tgts;
     var root = rt;
 
-    Y.on("domready", activate);
+    function tgtMatch(ck, ext) {
+        var ret = false;
+        var eck = "-" + ck + "-";
+        if (eck.indexOf("-" + ext + "-") >= 0) {
+            ret = true;
+        }
+        return ret;
+    }
+
+    function createIcons(_array,_shareuser) {
+        for (var i = 0; i < _array.length; i++) {
+            var a = _array[i];
+            var href = a.href;
+            var bits = href.split("/");
+            var last = bits[bits.length - 1];
+            var lsplit = last.split("?");
+            var phpfnm = lsplit[0];
+            var arg = false;
+            if (lsplit.length > 1) {
+                arg = lsplit[1];
+            }
+            var ifile = href.indexOf("file.php/");
+
+            // There are two ways a resource is linked: view.php with an id argument
+            // or file.php with a path after it.
+            // These both map to our view.php function, either with the original argument used for Moodle's view.php, 
+            // or with a "p=path" argument.
+
+            var evhr = "";
+            if (phpfnm == "view.php" && arg) {
+                // Occurs for links on the course page. arg holds the id of the resource within the course.
+                evhr = root + "/blocks/annotate/view.php?" + arg;
+            } else if (ifile > 0) {
+                // Occurs for links in the files area. The remainder of the url after file.php is the path to the resource.
+                var pth = href.substr(ifile + 10);
+                evhr = root + "/blocks/annotate/view.php?" + "p=" + encodeURI(pth);
+            }
+            if (evhr) {
+                if (_shareuser) {
+                    evhr += "&owner=" + encodeURIComponent(_shareuser);
+                }
+
+                // Make a new anchor.
+                var anew = document.createElement("a");
+                anew.href = evhr;
+                anew.target = "_blank";
+                // It just contains our annotate image.
+                var img = document.createElement("img");
+                img.src = root + "/blocks/annotate/pix/annotate.png";
+                img.root = root + "/blocks/annotate/pix/";
+                img.style.paddingRight = "4px";
+                img.alt = "View and make notes on-line with Annotate";
+                anew.title = "View and make notes on-line with Annotate. Try it out!";
+                anew.appendChild(img);
+                a.parentNode.insertBefore(anew, a);
+            }
+        }
+    }
 
     function activate() {
 
@@ -98,9 +155,9 @@ M.block_annotate.init = function(Y, tgts, rt) {
             "jpeg-":bjpg
         };
 
-        // Find the anchors we need to add links to. Don't mess with them here so we don't change the document while we are iterating over it.
+        // Find the anchors we need to add links to. 
+        // Don't mess with them here so we don't change the document while we are iterating over it.
         var toActivate = [];
-        var imgnames = "";
 
         var as = document.getElementsByTagName("A");
 
@@ -108,8 +165,6 @@ M.block_annotate.init = function(Y, tgts, rt) {
             var shouldLink = false;
 
             var cn = as[i].childNodes;
-            var cls = "" + as[i].className;
-            var txt = "" + as[i].innerText;
             var ref = "" + as[i].href;
             if (cn.length > 0 && cn[0].tagName == "IMG") {
                 var src = "" + cn[0].src;
@@ -141,7 +196,7 @@ M.block_annotate.init = function(Y, tgts, rt) {
             }
 
             // If we have not found it, check the link text.
-            if (shouldLink == false) {
+            if (shouldLink === false) {
                 if(ref.indexOf('.pdf') != -1) {
                     shouldLink = true;
                 } else if (ref.indexOf('.doc') != -1) {
@@ -161,83 +216,5 @@ M.block_annotate.init = function(Y, tgts, rt) {
         createIcons(toActivate,shareuser);
     }
 
-    function createIcons(_array,_shareuser) {
-        for (var i = 0; i < _array.length; i++) {
-            var a = _array[i];
-            var href = a.href;
-            var bits = href.split("/");
-            var last = bits[bits.length - 1];
-            var lsplit = last.split("?");
-            var phpfnm = lsplit[0];
-            var arg = false;
-            if (lsplit.length > 1) {
-                arg = lsplit[1];
-            }
-            var ifile = href.indexOf("file.php/");
-
-            // There are two ways a resource is linked: view.php with an id argument, or file.php with a path after it.
-            // These both map to our view.php function, either with the original argument used for Moodle's view.php, or with a "p=path" argument.
-
-            var evhr = "";
-            if (phpfnm == "view.php" && arg) {
-                // Occurs for links on the course page. arg holds the id of the resource within the course.
-                evhr = root + "/blocks/annotate/view.php?" + arg;
-
-            } else if (ifile > 0){
-                // Occurs for links in the files area. The remainder of the url after file.php is the path to the resource.
-                var pth = href.substr(ifile + 10);
-                evhr = root + "/blocks/annotate/view.php?" + "p=" + encodeURI(pth);
-            }
-            if (evhr) {
-                if (_shareuser) {
-                    evhr += "&owner=" + encodeURIComponent(_shareuser);
-                }
-
-                // Make a new anchor.
-                var anew = document.createElement("a");
-                anew.href = evhr;
-                anew.target = "_blank";
-                // It just contains our annotate image.
-                var img = document.createElement("img");
-                img.src = root + "/blocks/annotate/pix/annotate.png";
-                img.root = root + "/blocks/annotate/pix/";
-                img.style.paddingRight = "4px";
-                img.alt = "View and make notes on-line with Annotate";
-                anew.title = "View and make notes on-line with Annotate. Try it out!";
-                anew.appendChild(img);
-                a.parentNode.insertBefore(anew, a);
-            }
-        }
-    }
-
-    function evover(e) {
-        var img = getTarget(e);
-        if (img.root) {
-            img.src = img.root + "annotate-on.png";
-        }
-    }
-
-    function evout(e) {
-        var img = getTarget(e);
-        if (img.root) {
-            img.src = img.root + "annotate.png";
-        }
-    }
-
-    function getTarget(evt) {
-        var x = evt;
-        x = (x || window.event);
-        var ret = (x.target || x.srcElement);
-        return ret;
-    }
-
-    function tgtMatch(ck, ext) {
-        var ret = false;
-        var eck = "-" + ck + "-";
-        if (eck.indexOf("-" + ext + "-") >= 0) {
-            ret = true;
-        }
-        return ret;
-    }
-
+    Y.on("domready", activate);
 }
