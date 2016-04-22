@@ -15,10 +15,10 @@ php:
 env:
  global:
   - MOODLE_BRANCH=MOODLE_30_STABLE
+  - IGNORE_PATHS=lib,lib/Crypt
  matrix:
   - DB=pgsql
   - DB=mysqli
-  - IGNORE_PATHS=lib,lib/Crypt
 
 before_install:
   - phpenv config-rm xdebug.ini
