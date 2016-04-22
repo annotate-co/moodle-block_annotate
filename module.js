@@ -32,7 +32,7 @@ M.block_annotate.init = function(Y, tgts, rt) {
 
             // There are two ways a resource is linked: view.php with an id argument
             // or file.php with a path after it.
-            // These both map to our view.php function, either with the original argument used for Moodle's view.php, 
+            // These both map to our view.php function, either with the original argument used for Moodle's view.php,
             // or with a "p=path" argument.
 
             var evhr = "";
@@ -155,7 +155,7 @@ M.block_annotate.init = function(Y, tgts, rt) {
             "jpeg-":bjpg
         };
 
-        // Find the anchors we need to add links to. 
+        // Find the anchors we need to add links to.
         // Don't mess with them here so we don't change the document while we are iterating over it.
         var toActivate = [];
 
@@ -217,4 +217,4 @@ M.block_annotate.init = function(Y, tgts, rt) {
     }
 
     Y.on("domready", activate);
-}
+};
