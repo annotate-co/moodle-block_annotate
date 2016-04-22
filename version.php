@@ -17,9 +17,9 @@
 /**
  * Annotate block version details
  *
- * @package block_annotate
- * @copyright Fokion Sotiropoulos
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   block_annotate
+ * @copyright Textensor Ltd.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 $plugin->version = 2016032800;

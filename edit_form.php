@@ -17,12 +17,22 @@
 /**
  * This file defines the edit form settings for this plugin
  *
- * @package block_annotate
- * @copyright Fokion Sotiropoulos
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   block_annotate
+ * @copyright Textensor Ltd.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+/**
+ * Annotate block config form class
+ *
+ * @copyright Textensor Ltd.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_annotate_edit_form extends block_edit_form {
+
+    /**
+     * Defines the form fields
+     */
     protected function specific_definition($mform) {
         $mform->addElement ( 'header', 'configheader', get_string ( 'config_header_label', 'block_annotate' ) );
 
@@ -47,9 +57,13 @@ class block_annotate_edit_form extends block_edit_form {
         $mform->addHelpButton ( 'config_access', 'config_access_label', 'block_annotate' );
         $mform->addHelpButton ( 'config_shareuser', 'config_shareuser_label', 'block_annotate' );
     }
+
+    /**
+     * Ensures that doc owner email provided if group access
+     */
     public function validation($data, $files) {
         $errors = parent::validation ( $data, $files );
-        // If group access, ensure doc owner email provided.
+        // .
         if ($data ['config_access'] == 'group') {
             if ($data ['config_shareuser'] == "") {
                 $errors ['config_shareuser'] = get_string ( 'enter_email_msg', 'block_annotate' );

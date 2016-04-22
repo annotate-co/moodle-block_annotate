@@ -18,9 +18,10 @@
  * Annotate block English language
  *
  * @package block_annotate
- * @author Fokion Sotiropoulos (fokion@textensor.com)
+ * @copyright  Textensor Ltd.
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 $string ['block_annotate_version_number'] = '1.4';
 $string ["block_annotate_version_date"] = '25-October-2015';
 $string ['pluginname'] = 'Annotate connector';
