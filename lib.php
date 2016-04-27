@@ -22,7 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once("lib/Crypt/HMAC2.php");
+require_once("lib/HMAC2.php");
 
 /**
  * Process user input (JSON-encode + HTML-escape).
