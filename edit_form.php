@@ -44,13 +44,13 @@ class block_annotate_edit_form extends block_edit_form {
         );
         $mform->addElement ( 'select', 'config_access', get_string ( 'config_access_label', 'block_annotate' ), $accessoptions );
         $mform->setDefault ( 'config_access', $individual );
-        $mform->setType ( 'config_access', PARAM_RAW );
+        $mform->setType ( 'config_access', PARAM_TEXT );
 
         $mform->addElement ( 'text', 'config_shareuser', get_string ( 'config_shareuser_label', 'block_annotate' ), array (
                 'size' => '30'
         ) );
         $mform->setDefault ( 'config_shareuser', '' );
-        $mform->setType ( 'config_shareuser', PARAM_RAW );
+        $mform->setType ( 'config_shareuser', PARAM_EMAIL );
         $mform->disabledIf ( 'config_shareuser', 'config_access', 'eq', 'individual' );
         $mform->addRule ( 'config_shareuser', get_string ( 'invalid_email_msg', 'block_annotate' ), 'email', null, 'client' );
 
