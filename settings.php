@@ -34,30 +34,35 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configtext("block_annotate_server_url",
        get_string("annotate_server_uri_lbl", "block_annotate"),
        get_string("annotate_server_uri_msg", "block_annotate"),
-       get_string("annotate_server_uri_default", "block_annotate"))
+       get_string("annotate_server_uri_default", "block_annotate")),
+       PARAM_URL
     );
 
     $settings->add(new admin_setting_configtext('block_annotate_api_user',
        get_string("annotate_api_user_lbl", "block_annotate"),
        get_string("annotate_api_user_msg", "block_annotate"),
-       get_string("annotate_api_user_default", "block_annotate"))
+       get_string("annotate_api_user_default", "block_annotate")),
+       PARAM_EMAIL
     );
 
     $settings->add(new admin_setting_configtext('block_annotate_api_key',
        get_string("annotate_api_key_lbl", "block_annotate"),
        get_string("annotate_api_key_msg", "block_annotate"),
-       get_string("annotate_api_key_default", "block_annotate"))
+       get_string("annotate_api_key_default", "block_annotate")),
+       PARAM_ALPHANUMEXT
     );
 
     $settings->add(new admin_setting_configtext('block_annotate_wsuser_token',
        get_string("annotate_wsuser_token_lbl", "block_annotate"),
        get_string("annotate_wsuser_token_msg", "block_annotate"),
-       get_string("annotate_wsuser_token_default", "block_annotate"))
+       get_string("annotate_wsuser_token_default", "block_annotate")),
+       PARAM_ALPHANUMEXT
     );
 
     $settings->add(new admin_setting_configtext('block_annotate_moodleId',
        get_string("annotate_moodleId_lbl", "block_annotate"),
        get_string("annotate_moodleId_msg", "block_annotate"),
-       sha1($CFG->wwwroot))
+       sha1($CFG->wwwroot)),
+       PARAM_ALPHANUMEXT
     );
 }
