@@ -22,33 +22,31 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string ['block_annotate_version_number'] = '1.4';
-$string ["block_annotate_version_date"] = '25-October-2015';
-$string ['pluginname'] = 'Annotate connector';
-$string ['annotate'] = 'Annotate';
+$string ['pluginname'] = 'Annotate';
 $string ['annotate:addinstance'] = 'Add the Annotate block';
 $string ['annotate:myaddinstance'] = 'Add the Annotate block to My home page';
+$string ['annotate:accessannotate'] = 'Access Annotate';
 
 $string ['annotate_header_config'] = 'Annotate server settings';
-$string ['annotate_header_description'] = 'Here you can edit the Api user and key in order to connect to an Annotate server.';
+$string ['annotate_header_description'] = 'Here you can enter the necessary parameters to connect to your Annotate server.';
 $string ['annotate_server_uri_lbl'] = 'Annotate Server URI';
-$string ['annotate_server_uri_msg'] = 'Set this to your local Annotate server. ' . 'For testing, if you have a default Annotate installation on the same server as Moodle try "http://localhost/annotate".' . 'If both servers are on the same local subnetwork you can use their local ip addresses here to, as long as each is ' . 'configured to know its own address.';
+$string ['annotate_server_uri_msg'] = 'Set this to your Annotate server. For testing, if you have a default Annotate installation on the same server as Moodle try "http://localhost/annotate". If both servers are on the same local subnetwork you can use their local ip addresses here too, as long as each is configured to know its own address.';
 $string ['annotate_server_uri_default'] = 'http://localhost/annotate';
 
-$string ['annotate_api_user_lbl'] = 'API user email address';
-$string ['annotate_api_user_msg'] = 'They allow accounts to be automatically created on the Annotate server when ' . 'a Moodle user follows an A.nnotate link. The API user field should contain the email id of an ' . 'Annotate server administrator as set in the Annotate configuration file. ';
+$string ['annotate_api_user_lbl'] = 'API user email';
+$string ['annotate_api_user_msg'] = 'Email of Annotate user with API access. This is often the user to whom the license has been issued.';
 $string ['annotate_api_user_default'] = '';
 
 $string ['annotate_api_key_lbl'] = 'API key for the user';
-$string ['annotate_api_key_msg'] = 'The API key can be found at the bottom of the account page when logged in to Annotate server administration page ';
+$string ['annotate_api_key_msg'] = 'The API key can be found at the bottom of the settings page when logged in to Annotate as an user with API access.';
 $string ['annotate_api_key_default'] = '';
 
 $string ['annotate_wsuser_token_lbl'] = 'Web Services user token';
-$string ['annotate_wsuser_token_msg'] = 'A specific Moodle Web Services user must be created to allow Annotate to fetch files from Moodle.';
+$string ['annotate_wsuser_token_msg'] = 'A specific Moodle Web Services user must be created to allow Annotate to fetch files from the Moodle server. Instructions on this can be found in https://moodle.org/plugins/block_annotate';
 $string ['annotate_wsuser_token_default'] = '';
 
 $string ['annotate_moodleId_lbl'] = 'Moodle Installation Identifier';
-$string ['annotate_moodleId_msg'] = 'In order to separate the workspaces based on the location of the moodle.';
+$string ['annotate_moodleId_msg'] = 'In order to separate the workspaces based on the Moodle install location.';
 
 $string ['config_header_label'] = 'Document sharing options';
 $string ['config_individual_access'] = 'Individual';
