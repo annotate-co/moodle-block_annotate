@@ -38,7 +38,7 @@ class block_annotate extends block_base {
      * @return void
      */
     public function init() {
-        $this->title = get_string ( "annotate", "block_annotate" );
+        $this->title = get_string ( "pluginname", "block_annotate" );
     }
 
     /**
